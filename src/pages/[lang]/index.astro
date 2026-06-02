@@ -1,0 +1,13 @@
+---
+import PageRenderer from "../../components/PageRenderer.astro";
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: "de" }, props: { locale: "de", routeKey: "home" } },
+    { params: { lang: "en" }, props: { locale: "en", routeKey: "home" } }
+  ];
+}
+
+const { locale, routeKey } = Astro.props;
+---
+<PageRenderer locale={locale} routeKey={routeKey} />

@@ -1,0 +1,96 @@
+---
+import Header from "../components/Header.jsx";
+import ConsentBanner from "../components/ConsentBanner.jsx";
+import { site } from "../config/site.js";
+import { alternatePath, getPath } from "../i18n/routes.js";
+import { navItems, t } from "../content/siteContent.js";
+import "../styles/global.css";
+
+const { locale, routeKey, page } = Astro.props;
+const copy = t(locale);
+const currentPath = getPath(locale, routeKey);
+const alternateHref = alternatePath(locale, routeKey);
+const canonical = `${site.url}${currentPath}`;
+const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID || "";
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: site.company.legalName,
+  url: site.url,
+  logo: `${site.url}${site.assets.logo}`,
+  image: `${site.url}${site.assets.hero}`,
+  telephone: site.company.phone,
+  email: site.company.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.company.street,
+    addressLocality: site.company.city,
+    addressCountry: site.company.country
+  },
+  areaServed: ["Sachsen", "Sachsen-Anhalt", "Thüringen"],
+  sameAs: [site.company.youtube]
+};
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content={site.theme.turquoise} />
+    <link rel="icon" type="image/png" href={site.assets.logoWhite} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="de" href={`${site.url}${getPath("de", routeKey)}`} />
+    <link rel="alternate" hreflang="en" href={`${site.url}${getPath("en", routeKey)}`} />
+    <link rel="alternate" hreflang="x-default" href={`${site.url}${getPath("de", routeKey)}`} />
+    <link rel="preload" href={site.assets.hero} as="image" type="image/webp" />
+    <title>{page.title}</title>
+    <meta name="description" content={page.description} />
+    <meta property="og:title" content={page.title} />
+    <meta property="og:description" content={page.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${site.url}${site.assets.hero}`} />
+    <meta property="og:locale" content={locale === "de" ? "de_DE" : "en_US"} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={page.title} />
+    <meta name="twitter:description" content={page.description} />
+    <meta name="twitter:image" content={`${site.url}${site.assets.hero}`} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  </head>
+  <body>
+    <Header client:load locale={locale} labels={copy.nav} navItems={navItems(locale)} currentPath={currentPath} alternateHref={alternateHref} />
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div>
+          <img class="footer-logo" src={site.assets.logoWhite} alt="IBS-Saxony" />
+          <p>{locale === "de" ? "Prozessoptimierung, Systemintegration und digitale Werkzeuge für Unternehmen in Sachsen." : "Process optimization, systems integration and digital tools for companies in Saxony."}</p>
+        </div>
+        <div>
+          <h2>{copy.footer.quickLinks}</h2>
+          {navItems(locale).map((item) => <a href={item.href}>{item.label}</a>)}
+        </div>
+        <div>
+          <h2>{copy.footer.contact}</h2>
+          <a href={site.company.emailHref}>{site.company.email}</a>
+          <a href={site.company.phoneHref}>{site.company.phone}</a>
+          <p>{site.company.street}<br />{site.company.city}</p>
+        </div>
+        <div>
+          <h2>{copy.footer.legal}</h2>
+          <a href={getPath(locale, "imprint")}>{locale === "de" ? "Impressum" : "Imprint"}</a>
+          <a href={getPath(locale, "privacy")}>{locale === "de" ? "Datenschutz" : "Privacy"}</a>
+          <a href={site.company.youtube} target="_blank" rel="noreferrer">YouTube</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© {new Date().getFullYear()} {site.company.legalName}. {copy.footer.rights}</span>
+        <button class="footer-consent" type="button" onclick="window.dispatchEvent(new Event('ibs-saxony-reset-consent'))">{copy.consent.reset}</button>
+      </div>
+    </footer>
+    <ConsentBanner client:load copy={copy.consent} privacyHref={getPath(locale, "privacy")} measurementId={gaId} />
+  </body>
+</html>

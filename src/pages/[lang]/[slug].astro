@@ -1,0 +1,16 @@
+---
+import PageRenderer from "../../components/PageRenderer.astro";
+import { allLocalizedPaths } from "../../i18n/routes.js";
+
+export function getStaticPaths() {
+  return allLocalizedPaths()
+    .filter(({ slug }) => slug)
+    .map(({ lang, slug, key }) => ({
+      params: { lang, slug },
+      props: { locale: lang, routeKey: key }
+    }));
+}
+
+const { locale, routeKey } = Astro.props;
+---
+<PageRenderer locale={locale} routeKey={routeKey} />

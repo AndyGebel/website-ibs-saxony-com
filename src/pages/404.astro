@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { page } from "../content/siteContent.js";
+const locale = "de";
+const routeKey = "home";
+const p = {
+  ...page(locale, routeKey),
+  title: "Seite nicht gefunden | IBS-Saxony",
+  description: "Diese Seite wurde nicht gefunden."
+};
+---
+<BaseLayout locale={locale} routeKey={routeKey} page={p}>
+  <section class="section hero-compact">
+    <div class="container narrow">
+      <h1>Seite nicht gefunden</h1>
+      <p>Die gesuchte Seite existiert nicht oder wurde verschoben.</p>
+      <a class="button button-gold" href="/de/">Zur Startseite</a>
+    </div>
+  </section>
+</BaseLayout>
