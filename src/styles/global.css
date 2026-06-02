@@ -1,6 +1,7 @@
 :root {
   --color-primary: #41b9b9;
   --color-primary-dark: #2d8f8f;
+  --color-primary-30-dark: #2e8282;
   --color-gold: #f1c232;
   --color-charcoal: #333333;
   --color-ink: #1f2933;
@@ -178,9 +179,7 @@ a {
   min-height: calc(100vh - 82px);
   padding: clamp(60px, 8vw, 108px) clamp(18px, 5vw, 72px);
   overflow: hidden;
-  background:
-    linear-gradient(112deg, rgba(51, 51, 51, 0.94), rgba(45, 143, 143, 0.88)),
-    url("/assets/network-nodes.webp") center / cover;
+  background: linear-gradient(112deg, var(--color-primary), var(--color-primary-30-dark));
   color: var(--color-white);
 }
 
@@ -253,7 +252,7 @@ a {
 }
 
 .section-dark {
-  background: var(--color-charcoal);
+  background: var(--color-primary);
   color: var(--color-white);
 }
 
