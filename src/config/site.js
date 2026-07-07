@@ -7,7 +7,7 @@ export const site = {
     shortName: "IBS-Saxony",
     ceo: "Andreas Gebel",
     street: "Ringstraße 12",
-    city: "01612 Nünchritz OT Naundörfchen",
+    city: "01612 Nünchritz",
     country: "Deutschland",
     phone: "+49 1514 2495353",
     phoneHref: "tel:+4915142495353",
@@ -15,15 +15,15 @@ export const site = {
     email: "info@ibs-saxony.com",
     emailHref: "mailto:info@ibs-saxony.com",
     court: "Amtsgericht Dresden",
-    hrb: "HRB 41846",
-    vatId: "DE369260507",
+    hrb: "HRB 46463",
+    vatId: "DE455301483",
     youtube: "https://www.youtube.com/@ibs-saxony"
   },
   assets: {
     logo: "/assets/logo-ibs-saxony.png",
     logoWhite: "/assets/logo-ibs-saxony-white.png",
-    hero: "/assets/heroimage-ibs-saxony-03.webp",
-    heroFallback: "/assets/heroimage-ibs-saxony-03.png",
+    hero: "/assets/heroimage-ibs-saxony-05.webp",
+    heroFallback: "/assets/heroimage-ibs-saxony-05.png",
     network: "/assets/network-nodes.webp",
     toolkit: "/assets/toolkit-logo.png"
   },

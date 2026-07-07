@@ -12,6 +12,7 @@ const currentPath = getPath(locale, routeKey);
 const alternateHref = alternatePath(locale, routeKey);
 const canonical = `${site.url}${currentPath}`;
 const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID || "";
+const clarityProjectId = import.meta.env.VITE_CLARITY_PROJECT_ID || "";
 const schema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -68,6 +69,7 @@ const schema = {
         <div>
           <img class="footer-logo" src={site.assets.logoWhite} alt="IBS-Saxony" />
           <p>{locale === "de" ? "Prozessoptimierung, Systemintegration und digitale Werkzeuge für Unternehmen in Sachsen." : "Process optimization, systems integration and digital tools for companies in Saxony."}</p>
+          <p class="footer-disclaimer">{copy.footer.advisoryDisclaimer}</p>
         </div>
         <div>
           <h2>{copy.footer.quickLinks}</h2>
@@ -91,6 +93,6 @@ const schema = {
         <button class="footer-consent" type="button" onclick="window.dispatchEvent(new Event('ibs-saxony-reset-consent'))">{copy.consent.reset}</button>
       </div>
     </footer>
-    <ConsentBanner client:load copy={copy.consent} privacyHref={getPath(locale, "privacy")} measurementId={gaId} />
+    <ConsentBanner client:load copy={copy.consent} privacyHref={getPath(locale, "privacy")} measurementId={gaId} clarityProjectId={clarityProjectId} />
   </body>
 </html>

@@ -8,34 +8,90 @@ const { locale, routeKey } = Astro.props;
 const p = page(locale, routeKey);
 const copy = t(locale);
 const legal = legalContent(locale);
+const splitHeroHeading = (heading = "") => {
+  const splitAt = heading.indexOf(". ");
+  return splitAt > -1 ? [heading.slice(0, splitAt + 1), heading.slice(splitAt + 2)] : [heading];
+};
+const heroHeadingParts = routeKey === "home" ? splitHeroHeading(p.hero.heading) : [];
+
+const homeSections = Array.isArray(p.sections) ? p.sections.filter((section: { hidden?: boolean }) => section?.hidden !== true) : [];
+const sectionLabels = {
+  de: {
+    problem: "Ausgangslage",
+    audiences: "Fokus",
+    services: "Hebel",
+    process: "Vorgehen",
+    products: "Werkzeuge"
+  },
+  en: {
+    problem: "Starting point",
+    audiences: "Focus",
+    services: "Levers",
+    process: "Approach",
+    products: "Tools"
+  }
+};
+const getSectionLabel = (type: string) => sectionLabels[locale]?.[type] || sectionLabels.de[type] || "";
 ---
 
 <BaseLayout locale={locale} routeKey={routeKey} page={p}>
   {routeKey === "home" && (
     <>
       <section class="hero">
-        <div class="hero-copy">
-          <h1>{p.hero.heading}</h1>
-          <p>{p.hero.text}</p>
-          <div class="button-row">
-            <a class="button button-gold" href={getPath(locale, "contact")}>{p.hero.primary}</a>
-            <a class="button button-ghost" href={getPath(locale, "services")}>{p.hero.secondary}</a>
+        <div class="hero-shell">
+          <div class="hero-copy">
+            {p.hero.kicker && <p class="eyebrow hero-eyebrow">{p.hero.kicker}</p>}
+            <h1>
+              <span>{heroHeadingParts[0]}</span>
+              {heroHeadingParts[1] && <strong>{heroHeadingParts[1]}</strong>}
+            </h1>
+            <p>{p.hero.text}</p>
+            <div class="button-row">
+              <a class="button button-gold" href={getPath(locale, "contact")}>{p.hero.primary}</a>
+              <a class="button button-ghost" href={getPath(locale, "services")}>{p.hero.secondary}</a>
+            </div>
+            {p.hero.note && <p class="hero-note">{p.hero.note}</p>}
+            {p.hero.proof && (
+              <div class="hero-proof" aria-label={locale === "de" ? "Operative Schwerpunkte" : "Operational focus areas"}>
+                {p.hero.proof.map(([title, text]) => (
+                  <div>
+                    <strong>{title}</strong>
+                    <span>{text}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <div class="hero-visual">
+            <picture class="hero-media">
+              <source srcset={site.assets.hero} type="image/webp" />
+              <img src={site.assets.heroFallback} alt={locale === "de" ? "Operative Prozessplanung mit digitalen Workflows und landwirtschaftlichen Betriebsdaten" : "Operational process planning with digital workflows and agricultural business data"} />
+            </picture>
+            {p.hero.panel && (
+              <aside class="hero-panel" aria-label={p.hero.panel.title}>
+                <span>{locale === "de" ? "Ablaufkarte" : "Workflow map"}</span>
+                <h2>{p.hero.panel.title}</h2>
+                <p>{p.hero.panel.text}</p>
+                <ul>
+                  {p.hero.panel.items.map((item: string) => <li>{item}</li>)}
+                </ul>
+              </aside>
+            )}
           </div>
         </div>
-        <picture class="hero-media">
-          <source srcset={site.assets.hero} type="image/webp" />
-          <img src={site.assets.heroFallback} alt="Digitalisierte Prozesslandschaft mit vernetzten Informationen" />
-        </picture>
       </section>
-      {p.sections.map((section) => (
-        <section class={`section ${section.type === "services" ? "section-dark" : ""}`}>
+      {p.hero.chips && <section class="trust-strip"><div class="container">{p.hero.chips.map((chip: string) => <span>{chip}</span>)}</div></section>}
+      {homeSections.map((section: any) => (
+        <section class={`section section-${section.type}`}>
           <div class="container">
             <div class="section-heading">
+              {getSectionLabel(section.type) && <span class="section-kicker">{getSectionLabel(section.type)}</span>}
               <h2>{section.title}</h2>
               {section.text && <p>{section.text}</p>}
             </div>
-            {section.points && <div class="proof-list">{section.points.map((point) => <span>{point}</span>)}</div>}
-            {section.cards && <div class="card-grid four">{section.cards.map(([title, text]) => <article class="service-card"><h3>{title}</h3><p>{text}</p></article>)}</div>}
+            {section.points && <div class="proof-list">{section.points.map((point: string) => <span>{point}</span>)}</div>}
+            {section.cards && <div class={`card-grid ${section.cards.length === 4 ? "four" : section.cards.length === 3 ? "three" : "two"}`}>{section.cards.map(([title, text]: [string, string], index: number) => <article class="service-card"><span class="card-index">{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div>}
+            {section.steps && <div class="step-grid">{section.steps.map(([number, title, text]) => <article class="step-card"><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div>}
             {section.type === "products" && (
               <div class="product-band">
                 <img src={site.assets.toolkit} alt="PDF Toolkit Logo" />
@@ -48,6 +104,14 @@ const legal = legalContent(locale);
           </div>
         </section>
       ))}
+      <section class="section final-cta">
+        <div class="container">
+          <span class="section-kicker">{locale === "de" ? "Nächster Schritt" : "Next step"}</span>
+          <h2>{locale === "de" ? "Aus Reibung wird ein klarer nächster Ablauf." : "Turn friction into one clear next workflow."}</h2>
+          <p>{locale === "de" ? "Im Erstgespräch prüfen wir, welcher operative Engpass zuerst entlastet werden sollte." : "In the initial call, we review which operational bottleneck should be relieved first."}</p>
+          <a class="button button-gold" href={getPath(locale, "contact")}>{p.hero.primary}</a>
+        </div>
+      </section>
       <section class="section section-soft">
         <div class="container">
           <div class="section-heading">
@@ -81,7 +145,8 @@ const legal = legalContent(locale);
   {routeKey === "references" && (
     <>
       <section class="section hero-compact"><div class="container narrow"><h1>{p.heading}</h1><p>{p.intro}</p></div></section>
-      <section class="section"><div class="container narrow quote-card"><blockquote>“{p.quote}”</blockquote><p>{p.author}</p></div></section>
+      {p.quote && <section class="section"><div class="container narrow quote-card"><blockquote>“{p.quote}”</blockquote><p>{p.author}</p></div></section>}
+      {p.notice && <section class="section"><div class="container narrow service-card"><h2>{p.noticeTitle}</h2><p>{p.notice}</p></div></section>}
       <section class="section section-soft"><div class="container card-grid three">{p.cases.map(([title, text]) => <article class="service-card"><h2>{title}</h2><p>{text}</p></article>)}</div></section>
     </>
   )}
