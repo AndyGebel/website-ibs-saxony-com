@@ -959,20 +959,47 @@ select {
   margin-inline: auto;
 }
 
-.faq-list article {
-  padding: 24px 0;
+.faq-item {
   border-bottom: 1px solid var(--color-line);
   background: transparent;
 }
 
+.faq-item summary {
+  display: flex;
+  min-height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 0;
+  list-style: none;
+  cursor: pointer;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  flex: 0 0 auto;
+  color: var(--color-primary-dark);
+  content: "+";
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.faq-item[open] summary::after {
+  content: "-";
+}
+
 .faq-list h3 {
-  margin: 0 0 10px;
+  margin: 0;
   color: var(--color-charcoal);
   font-size: 1.06rem;
 }
 
 .faq-list p {
-  margin: 0;
+  margin: 0 0 22px;
 }
 
 .comparison-table {
