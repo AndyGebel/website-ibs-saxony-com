@@ -1,6 +1,9 @@
+import Clarity from "@microsoft/clarity";
 import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "ibs-saxony-analytics-consent";
+const CLARITY_CONSENT_GRANTED = { ad_Storage: "denied", analytics_Storage: "granted" };
+const CLARITY_CONSENT_DENIED = { ad_Storage: "denied", analytics_Storage: "denied" };
 
 function loadGoogleAnalytics(measurementId) {
   if (!measurementId || window.__ibsSaxonyGaLoaded) return;
@@ -22,24 +25,14 @@ function loadGoogleAnalytics(measurementId) {
 
 function setClarityConsent(analyticsGranted) {
   if (!window.clarity) return;
-  window.clarity("consentv2", {
-    ad_Storage: "denied",
-    analytics_Storage: analyticsGranted ? "granted" : "denied"
-  });
+  Clarity.consentV2(analyticsGranted ? CLARITY_CONSENT_GRANTED : CLARITY_CONSENT_DENIED);
 }
 
 function loadMicrosoftClarity(projectId) {
   if (!projectId || window.__ibsSaxonyClarityLoaded) return;
   window.__ibsSaxonyClarityLoaded = true;
-  window.clarity = window.clarity || function clarity() {
-    (window.clarity.q = window.clarity.q || []).push(arguments);
-  };
+  Clarity.init(projectId);
   setClarityConsent(true);
-
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `https://www.clarity.ms/tag/${encodeURIComponent(projectId)}`;
-  document.head.appendChild(script);
 }
 
 function loadAnalytics({ measurementId, clarityProjectId }) {
@@ -64,7 +57,7 @@ export default function ConsentBanner({ copy, privacyHref, measurementId, clarit
       localStorage.removeItem(STORAGE_KEY);
       setClarityConsent(false);
       if (window.clarity) {
-        window.clarity("consent", false);
+        Clarity.consent(false);
       }
       setChoice(null);
     };

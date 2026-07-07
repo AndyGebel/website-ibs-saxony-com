@@ -22,8 +22,8 @@ export const site = {
   assets: {
     logo: "/assets/logo-ibs-saxony.png",
     logoWhite: "/assets/logo-ibs-saxony-white.png",
-    hero: "/assets/heroimage-ibs-saxony-05.webp",
-    heroFallback: "/assets/heroimage-ibs-saxony-05.png",
+    hero: "/assets/heroimage-ibs-saxony-06.webp",
+    heroFallback: "/assets/heroimage-ibs-saxony-06.png",
     network: "/assets/network-nodes.webp",
     toolkit: "/assets/toolkit-logo.png"
   },

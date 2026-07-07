@@ -12,7 +12,7 @@ const currentPath = getPath(locale, routeKey);
 const alternateHref = alternatePath(locale, routeKey);
 const canonical = `${site.url}${currentPath}`;
 const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID || "";
-const clarityProjectId = import.meta.env.VITE_CLARITY_PROJECT_ID || "";
+const clarityProjectId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID || import.meta.env.VITE_CLARITY_PROJECT_ID || "";
 const schema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",

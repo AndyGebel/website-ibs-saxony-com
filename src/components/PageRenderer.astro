@@ -18,20 +18,32 @@ const homeSections = Array.isArray(p.sections) ? p.sections.filter((section: { h
 const sectionLabels = {
   de: {
     problem: "Ausgangslage",
+    offer: "Angebot",
+    timeline: "Zeitrahmen",
+    proof: "Arbeitsbeispiele",
+    pricing: "Preisrahmen",
     audiences: "Fokus",
     services: "Hebel",
+    risk: "Sicherheit",
     process: "Vorgehen",
     products: "Werkzeuge"
   },
   en: {
     problem: "Starting point",
+    offer: "Offer",
+    timeline: "Timeframe",
+    proof: "Work examples",
+    pricing: "Pricing",
     audiences: "Focus",
     services: "Levers",
+    risk: "Risk reduction",
     process: "Approach",
     products: "Tools"
   }
 };
 const getSectionLabel = (type: string) => sectionLabels[locale]?.[type] || sectionLabels.de[type] || "";
+const normalizeCard = (card: any) => Array.isArray(card) ? { title: card[0], text: card[1] } : card;
+const cardGridClass = (cards: any[] = []) => `card-grid ${cards.length === 4 ? "four" : cards.length === 3 ? "three" : "two"}`;
 ---
 
 <BaseLayout locale={locale} routeKey={routeKey} page={p}>
@@ -45,11 +57,11 @@ const getSectionLabel = (type: string) => sectionLabels[locale]?.[type] || secti
               <span>{heroHeadingParts[0]}</span>
               {heroHeadingParts[1] && <strong>{heroHeadingParts[1]}</strong>}
             </h1>
-            <p>{p.hero.text}</p>
             <div class="button-row">
               <a class="button button-gold" href={getPath(locale, "contact")}>{p.hero.primary}</a>
-              <a class="button button-ghost" href={getPath(locale, "services")}>{p.hero.secondary}</a>
+              <a class="button button-ghost" href={getPath(locale, p.hero.secondaryRoute || "services")}>{p.hero.secondary}</a>
             </div>
+            <p>{p.hero.text}</p>
             {p.hero.note && <p class="hero-note">{p.hero.note}</p>}
             {p.hero.proof && (
               <div class="hero-proof" aria-label={locale === "de" ? "Operative Schwerpunkte" : "Operational focus areas"}>
@@ -90,7 +102,33 @@ const getSectionLabel = (type: string) => sectionLabels[locale]?.[type] || secti
               {section.text && <p>{section.text}</p>}
             </div>
             {section.points && <div class="proof-list">{section.points.map((point: string) => <span>{point}</span>)}</div>}
-            {section.cards && <div class={`card-grid ${section.cards.length === 4 ? "four" : section.cards.length === 3 ? "three" : "two"}`}>{section.cards.map(([title, text]: [string, string], index: number) => <article class="service-card"><span class="card-index">{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div>}
+            {section.cards && (
+              <div class={cardGridClass(section.cards)}>
+                {section.cards.map((rawCard: any, index: number) => {
+                  const card = normalizeCard(rawCard);
+                  return (
+                    <article class="service-card">
+                      {card.logo ? (
+                        <img class="reference-logo" src={card.logo} alt={card.logoAlt || `${card.title} Logo`} loading="lazy" />
+                      ) : card.mark ? (
+                        <span class="reference-mark" aria-hidden="true">{card.mark}</span>
+                      ) : (
+                        <span class="card-index">{String(index + 1).padStart(2, "0")}</span>
+                      )}
+                      {card.subtitle && <span class="card-eyebrow">{card.subtitle}</span>}
+                      <h3>{card.title}</h3>
+                      {card.result && <strong class="proof-result">{card.result}</strong>}
+                      <p>{card.text}</p>
+                      {Array.isArray(card.proofPoints) && (
+                        <ul class="proof-points">
+                          {card.proofPoints.map((point: string) => <li>{point}</li>)}
+                        </ul>
+                      )}
+                    </article>
+                  );
+                })}
+              </div>
+            )}
             {section.steps && <div class="step-grid">{section.steps.map(([number, title, text]) => <article class="step-card"><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div>}
             {section.type === "products" && (
               <div class="product-band">
@@ -106,9 +144,9 @@ const getSectionLabel = (type: string) => sectionLabels[locale]?.[type] || secti
       ))}
       <section class="section final-cta">
         <div class="container">
-          <span class="section-kicker">{locale === "de" ? "Nächster Schritt" : "Next step"}</span>
-          <h2>{locale === "de" ? "Aus Reibung wird ein klarer nächster Ablauf." : "Turn friction into one clear next workflow."}</h2>
-          <p>{locale === "de" ? "Im Erstgespräch prüfen wir, welcher operative Engpass zuerst entlastet werden sollte." : "In the initial call, we review which operational bottleneck should be relieved first."}</p>
+          <span class="section-kicker">{p.finalCta?.kicker || (locale === "de" ? "Nächster Schritt" : "Next step")}</span>
+          <h2>{p.finalCta?.title || (locale === "de" ? "Aus Reibung wird ein klarer nächster Ablauf." : "Turn friction into one clear next workflow.")}</h2>
+          <p>{p.finalCta?.text || (locale === "de" ? "Im Erstgespräch prüfen wir, welcher operative Engpass zuerst entlastet werden sollte." : "In the initial call, we review which operational bottleneck should be relieved first.")}</p>
           <a class="button button-gold" href={getPath(locale, "contact")}>{p.hero.primary}</a>
         </div>
       </section>
@@ -131,6 +169,16 @@ const getSectionLabel = (type: string) => sectionLabels[locale]?.[type] || secti
       <section class="section">
         <div class="container card-grid two">{p.serviceBlocks.map(([title, text]) => <article class="service-card"><h2>{title}</h2><p>{text}</p></article>)}</div>
       </section>
+      {p.relatedTitle && (
+        <section class="section section-soft">
+          <div class="container narrow service-card related-card">
+            <span class="section-kicker">{locale === "de" ? "Spezialseite" : "Special page"}</span>
+            <h2>{p.relatedTitle}</h2>
+            <p>{p.relatedText}</p>
+            <a class="button button-gold" href={getPath(locale, p.relatedRoute)}>{p.relatedCta}</a>
+          </div>
+        </section>
+      )}
       <section class="section section-soft">
         <div class="container">
           <div class="section-heading"><h2>{p.comparisonTitle}</h2></div>
@@ -142,12 +190,132 @@ const getSectionLabel = (type: string) => sectionLabels[locale]?.[type] || secti
     </>
   )}
 
+  {routeKey === "processDocs" && (
+    <>
+      <section class="section hero-compact process-docs-hero">
+        <div class="container split">
+          <div>
+            <span class="section-kicker">{locale === "de" ? "Prozess- und Dokumentationsabläufe" : "Process and Documentation Workflows"}</span>
+            <h1>{p.heading}</h1>
+            <p>{p.intro}</p>
+            <a class="button button-gold" href={getPath(locale, "contact")}>{copy.nav.cta}</a>
+          </div>
+          <aside class="process-flow-panel">
+            {p.heroPoints.map((point: string, index: number) => (
+              <span><strong>{String(index + 1).padStart(2, "0")}</strong>{point}</span>
+            ))}
+          </aside>
+        </div>
+      </section>
+      <section class="section section-soft">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-kicker">{locale === "de" ? "Ausgangslage" : "Starting point"}</span>
+            <h2>{p.problemTitle}</h2>
+            <p>{p.problemText}</p>
+          </div>
+          <div class="card-grid three">
+            {p.problemCards.map(([title, text]) => <article class="service-card"><span class="card-index">{title.slice(0, 2).toUpperCase()}</span><h3>{title}</h3><p>{text}</p></article>)}
+          </div>
+        </div>
+      </section>
+      <section class="section section-process-docs">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-kicker">{locale === "de" ? "Vorgehen" : "Approach"}</span>
+            <h2>{p.flowTitle}</h2>
+            <p>{p.flowText}</p>
+          </div>
+          <div class="step-grid process-docs-steps">
+            {p.flowSteps.map(([number, title, text]) => <article class="step-card"><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}
+          </div>
+        </div>
+      </section>
+      {p.schema && (
+        <section class="section section-schema">
+          <div class="container">
+            <div class="section-heading">
+              <span class="section-kicker">{locale === "de" ? "Schema" : "Schema"}</span>
+              <h2>{p.schema.title}</h2>
+              <p>{p.schema.text}</p>
+            </div>
+            <figure class="workflow-schema-figure">
+              <img src={p.schema.image} alt={p.schema.alt} width="2200" height="1227" loading="lazy" decoding="async" />
+              <figcaption>{p.schema.caption}</figcaption>
+            </figure>
+          </div>
+        </section>
+      )}
+      <section class="section section-soft">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-kicker">{locale === "de" ? "Ergebnis" : "Outcome"}</span>
+            <h2>{p.deliverableTitle}</h2>
+          </div>
+          <div class="card-grid four">
+            {p.deliverables.map(([title, text], index: number) => <article class="service-card"><span class="card-index">{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-kicker">{locale === "de" ? "Fokus" : "Focus"}</span>
+            <h2>{p.focusTitle}</h2>
+          </div>
+          <div class="card-grid three">
+            {p.focusCards.map(([title, text], index: number) => <article class="service-card"><span class="card-index">{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}
+          </div>
+        </div>
+      </section>
+      <section class="section section-dark">
+        <div class="container narrow">
+          <span class="section-kicker">{locale === "de" ? "Abgrenzung" : "Boundaries"}</span>
+          <h2>{p.boundaryTitle}</h2>
+          <p>{p.boundaryText}</p>
+        </div>
+      </section>
+      <section class="section final-cta">
+        <div class="container">
+          <span class="section-kicker">{locale === "de" ? "Nächster Schritt" : "Next step"}</span>
+          <h2>{p.ctaTitle}</h2>
+          <p>{p.ctaText}</p>
+          <a class="button button-gold" href={getPath(locale, "contact")}>{copy.nav.cta}</a>
+        </div>
+      </section>
+    </>
+  )}
+
   {routeKey === "references" && (
     <>
       <section class="section hero-compact"><div class="container narrow"><h1>{p.heading}</h1><p>{p.intro}</p></div></section>
       {p.quote && <section class="section"><div class="container narrow quote-card"><blockquote>“{p.quote}”</blockquote><p>{p.author}</p></div></section>}
       {p.notice && <section class="section"><div class="container narrow service-card"><h2>{p.noticeTitle}</h2><p>{p.notice}</p></div></section>}
-      <section class="section section-soft"><div class="container card-grid three">{p.cases.map(([title, text]) => <article class="service-card"><h2>{title}</h2><p>{text}</p></article>)}</div></section>
+      <section class="section section-soft">
+        <div class="container card-grid two">
+          {p.cases.map((rawCase: any) => {
+            const item = normalizeCard(rawCase);
+            return (
+              <article class="service-card">
+                {item.logo ? (
+                  <img class="reference-logo" src={item.logo} alt={item.logoAlt || `${item.title} Logo`} loading="lazy" />
+                ) : item.mark ? (
+                  <span class="reference-mark" aria-hidden="true">{item.mark}</span>
+                ) : null}
+                {item.subtitle && <span class="card-eyebrow">{item.subtitle}</span>}
+                <h2>{item.title}</h2>
+                {item.result && <strong class="proof-result">{item.result}</strong>}
+                <p>{item.text}</p>
+                {Array.isArray(item.proofPoints) && (
+                  <ul class="proof-points">
+                    {item.proofPoints.map((point: string) => <li>{point}</li>)}
+                  </ul>
+                )}
+              </article>
+            );
+          })}
+        </div>
+      </section>
     </>
   )}
 

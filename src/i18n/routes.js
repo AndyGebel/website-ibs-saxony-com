@@ -1,6 +1,7 @@
 export const routeMap = {
   home: { de: "", en: "" },
   services: { de: "leistungen", en: "services" },
+  processDocs: { de: "prozess-und-dokumentationsablaeufe", en: "process-and-documentation-workflows" },
   references: { de: "referenzen", en: "references" },
   about: { de: "ueber-uns", en: "about" },
   contact: { de: "kontakt", en: "contact" },
