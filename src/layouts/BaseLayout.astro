@@ -69,7 +69,10 @@ const schema = {
         <div>
           <img class="footer-logo" src={site.assets.logoWhite} alt="IBS-Saxony" />
           <p>{locale === "de" ? "Prozessoptimierung, Systemintegration und digitale Werkzeuge für Unternehmen in Sachsen." : "Process optimization, systems integration and digital tools for companies in Saxony."}</p>
-          <p class="footer-disclaimer">{copy.footer.advisoryDisclaimer}</p>
+          <details class="footer-legal-note">
+            <summary><span>{copy.footer.advisoryDisclaimerLabel}</span></summary>
+            <p>{copy.footer.advisoryDisclaimer}</p>
+          </details>
         </div>
         <div>
           <h2>{copy.footer.quickLinks}</h2>

@@ -19,6 +19,7 @@ const common = {
       contact: "Kontakt",
       social: "Social",
       rights: "Alle Rechte vorbehalten.",
+      advisoryDisclaimerLabel: "Rechtlicher Hinweis",
       advisoryDisclaimer: "IBS-Saxony erbringt keine Rechtsberatung, Insolvenzberatung, Steuerberatung, Finanzberatung oder sonstige verbindliche Fachberatung. Unsere Unterstützung bezieht sich auf operative Abläufe, Daten, Organisation und Umsetzung; rechtliche, steuerliche, insolvenzrechtliche oder finanzielle Fragen sind durch zugelassene Fachleute zu prüfen."
     },
     consent: {
@@ -48,6 +49,7 @@ const common = {
       contact: "Contact",
       social: "Social",
       rights: "All rights reserved.",
+      advisoryDisclaimerLabel: "Legal notice",
       advisoryDisclaimer: "IBS-Saxony does not provide legal, insolvency, tax, financial or other binding professional advice. Our support is limited to operational workflows, data, organization and implementation; legal, tax, insolvency or financial questions must be reviewed by qualified professionals."
     },
     consent: {
