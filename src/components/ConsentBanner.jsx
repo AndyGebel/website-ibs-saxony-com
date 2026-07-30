@@ -1,4 +1,3 @@
-import Clarity from "@microsoft/clarity";
 import { useEffect, useState } from "react";
 
 const STORAGE_KEY = "ibs-saxony-analytics-consent";
@@ -25,13 +24,34 @@ function loadGoogleAnalytics(measurementId) {
 
 function setClarityConsent(analyticsGranted) {
   if (!window.clarity) return;
-  Clarity.consentV2(analyticsGranted ? CLARITY_CONSENT_GRANTED : CLARITY_CONSENT_DENIED);
+  window.clarity("consentv2", analyticsGranted ? CLARITY_CONSENT_GRANTED : CLARITY_CONSENT_DENIED);
+}
+
+function clearClarityCookies() {
+  const domains = ["", window.location.hostname, `.${window.location.hostname}`];
+  if (window.location.hostname.split(".").length > 2) {
+    domains.push(`.${window.location.hostname.split(".").slice(-2).join(".")}`);
+  }
+  ["_clck", "_clsk"].forEach((name) => {
+    domains.forEach((domain) => {
+      document.cookie = `${name}=; Max-Age=0; path=/; SameSite=Lax${domain ? `; domain=${domain}` : ""}`;
+    });
+  });
 }
 
 function loadMicrosoftClarity(projectId) {
   if (!projectId || window.__ibsSaxonyClarityLoaded) return;
   window.__ibsSaxonyClarityLoaded = true;
-  Clarity.init(projectId);
+  window.clarity =
+    window.clarity ||
+    function clarity() {
+      (window.clarity.q = window.clarity.q || []).push(arguments);
+    };
+  setClarityConsent(false);
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://www.clarity.ms/tag/${encodeURIComponent(projectId)}`;
+  document.head.appendChild(script);
   setClarityConsent(true);
 }
 
@@ -56,9 +76,7 @@ export default function ConsentBanner({ copy, privacyHref, measurementId, clarit
     const reset = () => {
       localStorage.removeItem(STORAGE_KEY);
       setClarityConsent(false);
-      if (window.clarity) {
-        Clarity.consent(false);
-      }
+      clearClarityCookies();
       setChoice(null);
     };
     window.addEventListener("ibs-saxony-reset-consent", reset);
@@ -74,6 +92,7 @@ export default function ConsentBanner({ copy, privacyHref, measurementId, clarit
   const decline = () => {
     localStorage.setItem(STORAGE_KEY, "declined");
     setClarityConsent(false);
+    clearClarityCookies();
     setChoice("declined");
   };
 

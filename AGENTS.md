@@ -1,3 +1,9 @@
+---
+date: 2026-07-09
+tags: []
+type: note
+---
+
 # IBS-Saxony Website Regeln
 
 Diese Regeln gelten für das Astro-Projekt `ibs-saxony-react-site`.

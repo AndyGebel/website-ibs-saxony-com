@@ -1,5 +1,6 @@
 import { site } from "../config/site.js";
 import { getPath } from "../i18n/routes.js";
+import { supportPages } from "./supportPages.js";
 
 const common = {
   de: {
@@ -639,7 +640,7 @@ export function t(locale) {
 }
 
 export function page(locale, key) {
-  return pages[locale]?.[key] || pages.de[key];
+  return pages[locale]?.[key] || supportPages[locale]?.[key] || pages.de[key] || supportPages.de[key];
 }
 
 export function navItems(locale) {

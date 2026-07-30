@@ -2,6 +2,8 @@ export const routeMap = {
   home: { de: "", en: "" },
   services: { de: "leistungen", en: "services" },
   processDocs: { de: "prozess-und-dokumentationsablaeufe", en: "process-and-documentation-workflows" },
+  digitalAgriculturalOffice: { de: "digitales-agrarbuero-sachsen", en: "digital-agricultural-office-saxony" },
+  regionalProcessDocumentation: { de: "prozessdokumentation-regionale-betriebe", en: "process-documentation-regional-businesses" },
   references: { de: "referenzen", en: "references" },
   about: { de: "ueber-uns", en: "about" },
   contact: { de: "kontakt", en: "contact" },

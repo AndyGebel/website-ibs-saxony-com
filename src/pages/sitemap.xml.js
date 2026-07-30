@@ -6,7 +6,7 @@ function absolute(path) {
 }
 
 export function GET() {
-  const urls = Object.entries(routeMap).flatMap(([key, localized]) =>
+  const urls = Object.entries(routeMap).filter(([key]) => key !== "styleguide").flatMap(([key, localized]) =>
     Object.entries(localized).map(([locale]) => {
       const path = getPath(locale, key);
       const alternates = Object.entries(localized)

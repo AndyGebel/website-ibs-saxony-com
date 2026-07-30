@@ -293,6 +293,66 @@ const cardGridClass = (cards: any[] = []) => `card-grid ${cards.length === 4 ? "
     </>
   )}
 
+  {(routeKey === "digitalAgriculturalOffice" || routeKey === "regionalProcessDocumentation") && (
+    <>
+      <section class="section hero-compact process-docs-hero">
+        <div class="container narrow">
+          <span class="section-kicker">{p.eyebrow}</span>
+          <h1>{p.heading}</h1>
+          <p>{p.intro}</p>
+          <a class="button button-gold" href={getPath(locale, "contact")}>{copy.nav.cta}</a>
+        </div>
+      </section>
+      <section class="section section-soft">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-kicker">{locale === "de" ? "Ausgangslage" : "Starting point"}</span>
+            <h2>{p.problemTitle}</h2>
+            <p>{p.problemText}</p>
+          </div>
+          <div class="card-grid three">
+            {p.cards.map(([title, text]: [string, string], index: number) => <article class="service-card"><span class="card-index">{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="section-heading">
+            <span class="section-kicker">{locale === "de" ? "Vorgehen" : "Approach"}</span>
+            <h2>{p.approachTitle}</h2>
+            <p>{p.approachText}</p>
+          </div>
+          <div class="step-grid">
+            {p.steps.map(([number, title, text]) => <article class="step-card"><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}
+          </div>
+        </div>
+      </section>
+      <section class="section section-soft">
+        <div class="container narrow service-card related-card">
+          <span class="section-kicker">{locale === "de" ? "Fachkontext" : "Subject context"}</span>
+          <h2>{p.sourceTitle}</h2>
+          <p>{p.sourceText}</p>
+          <a class="text-link" href={p.sourceHref} target="_blank" rel="noreferrer">{p.sourceLabel}</a>
+        </div>
+      </section>
+      <section class="section section-dark">
+        <div class="container narrow">
+          <span class="section-kicker">{locale === "de" ? "Abgrenzung" : "Boundaries"}</span>
+          <p>{p.boundary}</p>
+          <a class="text-link" href={getPath(locale, p.relatedRoute)}>{p.relatedLabel}</a>
+        </div>
+      </section>
+      <section class="section final-cta">
+        <div class="container">
+          <span class="section-kicker">{locale === "de" ? "Nächster Schritt" : "Next step"}</span>
+          <h2>{p.ctaTitle}</h2>
+          <p>{p.ctaText}</p>
+          <a class="button button-gold" href={getPath(locale, "contact")}>{copy.nav.cta}</a>
+        </div>
+      </section>
+    </>
+  )}
+
   {routeKey === "references" && (
     <>
       <section class="section hero-compact"><div class="container narrow"><h1>{p.heading}</h1><p>{p.intro}</p></div></section>

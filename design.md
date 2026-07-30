@@ -1,3 +1,9 @@
+---
+date: 2026-07-09
+tags: []
+type: note
+---
+
 # IBS-Saxony Design System
 
 Stand: 2026-07-07  

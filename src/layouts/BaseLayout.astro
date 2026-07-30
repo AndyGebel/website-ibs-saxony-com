@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.jsx";
 import ConsentBanner from "../components/ConsentBanner.jsx";
+import ContactClickTracker from "../components/ContactClickTracker.jsx";
 import { site } from "../config/site.js";
 import { alternatePath, getPath } from "../i18n/routes.js";
 import { navItems, t } from "../content/siteContent.js";
@@ -13,6 +14,8 @@ const alternateHref = alternatePath(locale, routeKey);
 const canonical = `${site.url}${currentPath}`;
 const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID || "";
 const clarityProjectId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID || import.meta.env.VITE_CLARITY_PROJECT_ID || "";
+const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION || "";
+const isIndexable = page.indexable !== false && routeKey !== "styleguide";
 const schema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -39,6 +42,8 @@ const schema = {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content={site.theme.turquoise} />
+    <meta name="robots" content={isIndexable ? "index,follow" : "noindex,nofollow"} />
+    {googleSiteVerification && <meta name="google-site-verification" content={googleSiteVerification} />}
     <link rel="icon" type="image/png" href={site.assets.logoWhite} />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="de" href={`${site.url}${getPath("de", routeKey)}`} />
@@ -97,5 +102,6 @@ const schema = {
       </div>
     </footer>
     <ConsentBanner client:load copy={copy.consent} privacyHref={getPath(locale, "privacy")} measurementId={gaId} clarityProjectId={clarityProjectId} />
+    <ContactClickTracker client:load />
   </body>
 </html>
