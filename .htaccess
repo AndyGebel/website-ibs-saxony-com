@@ -2,7 +2,7 @@ DirectoryIndex index.php index.html
 ErrorDocument 404 /404.php
 Options -Indexes
 
-<FilesMatch "^(package(-lock)?\.json|tsconfig\.json|astro\.config\.mjs|design\.(md|html)|AGENTS\.md|npm-debug\.log.*)$">
+<FilesMatch "^(README\.md|package(-lock)?\.json|tsconfig\.json|astro\.config\.mjs|design\.(md|html)|AGENTS\.md|npm-debug\.log.*)$">
   Require all denied
 </FilesMatch>
 
