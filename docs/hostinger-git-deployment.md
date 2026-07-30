@@ -8,16 +8,26 @@ Die Website wird als statische PHP/HTML-Fassung aus dem aktuellen Astro-Snapshot
 
 ## Hostinger-Einstellungen
 
-Empfohlene Git-/Build-Konfiguration:
+Aktuelle Git-Konfiguration laut Hostinger-Dashboard:
 
-- Repository: `AndyGebel/website-ibs-saxony-com`
-- Branch: aktueller Arbeitsbranch oder später freigegebener Production-Branch
-- Install Command: `npm install`
-- Build Command: `npm run build`
-- Output Directory: `dist-php`
-- Entry File: leer lassen, falls möglich; alternativ `index.php`
+- Repository: `ibs-saxony` / `AndyGebel/website-ibs-saxony-com`
+- Branch: `main`
+- Deployment-Ziel: `public_html`
+- Bereitstellung: automatisch oder manuell über Hostinger
 
-`dist-php` enthält die deploybaren Dateien: PHP-Seiten, Assets, CSS, `robots.txt`, `sitemap.xml` und `.htaccess`.
+Hostinger legt bei dieser statischen PHP/HTML-Fassung den Repository-Root in `public_html`. Deshalb werden die deploybaren Dateien beim lokalen Build zusätzlich direkt in den Repo-Root gespiegelt:
+
+- `index.php`
+- `404.php`
+- `.htaccess`
+- `robots.txt`
+- `sitemap.xml`
+- `_astro/`
+- `assets/`
+- `de/`
+- `en/`
+
+`dist-php` bleibt als reproduzierbares Build-Artefakt erhalten. Die produktive Auslieferung funktioniert jedoch auch dann, wenn Hostinger nur den Repository-Root nach `public_html` kopiert.
 
 ## Microsoft Clarity
 

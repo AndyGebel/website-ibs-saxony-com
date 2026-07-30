@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const sourceDir = path.join(root, "dist");
 const outputDir = path.join(root, "dist-php");
+const rootDeployEntries = ["_astro", "assets", "de", "en", "404.php", "index.php", "robots.txt", "sitemap.xml"];
 const buildGaMeasurementId = process.env.VITE_GA_MEASUREMENT_ID || process.env.PUBLIC_GA_MEASUREMENT_ID || process.env.GA_MEASUREMENT_ID || "";
 const buildClarityProjectId = process.env.PUBLIC_CLARITY_PROJECT_ID || process.env.VITE_CLARITY_PROJECT_ID || process.env.CLARITY_PROJECT_ID || "";
 
@@ -250,6 +251,57 @@ ErrorDocument 404 /404.php
   await writeFile(path.join(outputDir, ".htaccess"), htaccess, "utf8");
 }
 
+
+async function writeRootHtaccess() {
+  const htaccess = `DirectoryIndex index.php index.html
+ErrorDocument 404 /404.php
+Options -Indexes
+
+<FilesMatch "^(package(-lock)?\\.json|tsconfig\\.json|astro\\.config\\.mjs|design\\.(md|html)|AGENTS\\.md|npm-debug\\.log.*)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteRule ^(\\.astro|\\.git|dist|dist-php|docs|node_modules|output|public|scripts|src|test-results)(/|$) - [F,L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.php -f
+  RewriteRule ^(.+?)/?$ $1/index.php [L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^.*$ /404.php [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-Frame-Options "SAMEORIGIN"
+  <FilesMatch "\\.(css|js|webp|png|jpg|jpeg|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
+`;
+  await writeFile(path.join(root, ".htaccess"), htaccess, "utf8");
+}
+
+async function syncRootDeploy() {
+  for (const entry of rootDeployEntries) {
+    await rm(path.join(root, entry), { recursive: true, force: true });
+  }
+
+  const entries = await readdir(outputDir, { withFileTypes: true });
+  for (const entry of entries) {
+    if (entry.name === ".htaccess") continue;
+    await cp(path.join(outputDir, entry.name), path.join(root, entry.name), { recursive: true });
+  }
+
+  await writeRootHtaccess();
+}
+
 async function main() {
   const sourceInfo = await stat(sourceDir).catch(() => null);
   if (!sourceInfo?.isDirectory()) {
@@ -265,9 +317,10 @@ async function main() {
     await writePhpFile(file);
   }
   await writeHtaccess();
+  await syncRootDeploy();
 
   const phpFiles = (await walk(outputDir)).filter((file) => file.toLowerCase().endsWith(".php"));
-  console.log(`Generated ${phpFiles.length} PHP files in ${path.relative(root, outputDir)} with unchanged visible content.`);
+  console.log(`Generated ${phpFiles.length} PHP files in ${path.relative(root, outputDir)} and synced static PHP/HTML deployment files to the repository root with unchanged visible content.`);
 }
 
 main().catch((error) => {

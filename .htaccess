@@ -1,0 +1,31 @@
+DirectoryIndex index.php index.html
+ErrorDocument 404 /404.php
+Options -Indexes
+
+<FilesMatch "^(package(-lock)?\.json|tsconfig\.json|astro\.config\.mjs|design\.(md|html)|AGENTS\.md|npm-debug\.log.*)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteRule ^(\.astro|\.git|dist|dist-php|docs|node_modules|output|public|scripts|src|test-results)(/|$) - [F,L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.php -f
+  RewriteRule ^(.+?)/?$ $1/index.php [L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^.*$ /404.php [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-Frame-Options "SAMEORIGIN"
+  <FilesMatch "\.(css|js|webp|png|jpg|jpeg|svg|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
