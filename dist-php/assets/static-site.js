@@ -180,9 +180,42 @@
     });
   }
 
+
+  function setupContactForm() {
+    const status = bySelector("[data-form-status]");
+    const formState = new URLSearchParams(window.location.search).get("formular");
+
+    if (status && formState) {
+      const isSuccess = formState === "gesendet" || formState === "sent";
+      const isError = formState === "fehler" || formState === "error";
+      if (isSuccess || isError) {
+        status.textContent = isSuccess ? status.dataset.success : status.dataset.error;
+        status.classList.add(isSuccess ? "form-status-success" : "form-status-error");
+        status.hidden = false;
+      }
+    }
+
+    document.querySelectorAll("[data-contact-form]").forEach((form) => {
+      form.addEventListener("submit", () => {
+        if (window.localStorage.getItem(CONSENT_KEY) !== "accepted") return;
+
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "contact_form_submit", {
+            page_path: window.location.pathname
+          });
+        }
+
+        if (typeof window.clarity === "function") {
+          window.clarity("event", "conversion_contact_form");
+        }
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     setupMenu();
     setupConsent();
     setupContactTracking();
+    setupContactForm();
   });
 })();

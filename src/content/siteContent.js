@@ -334,7 +334,24 @@ const pages = {
         ["Telefon", site.company.phone, site.company.phoneHref],
         ["WhatsApp", "Direktnachricht starten", site.company.whatsappHref]
       ],
-      note: "Beim Klick auf WhatsApp verlassen Sie diese Website und öffnen einen externen Dienst. IBS-Saxony erbringt keine Rechtsberatung, Insolvenzberatung, Steuerberatung, Finanzberatung oder sonstige verbindliche Fachberatung."
+      note: "Beim Klick auf WhatsApp verlassen Sie diese Website und öffnen einen externen Dienst. IBS-Saxony erbringt keine Rechtsberatung, Insolvenzberatung, Steuerberatung, Finanzberatung oder sonstige verbindliche Fachberatung.",
+      form: {
+        kicker: "Direktanfrage",
+        title: "Nachricht in 2 Minuten senden",
+        intro: "Schildern Sie kurz, welcher Ablauf heute Reibung erzeugt. Eine grobe Beschreibung reicht für den ersten Blick.",
+        requiredHint: "Pflichtfelder sind mit * gekennzeichnet.",
+        name: "Name",
+        email: "E-Mail",
+        company: "Firma oder Betrieb (optional)",
+        phone: "Telefon (optional)",
+        topic: "Anliegen",
+        topics: ["Kostenloses Erstgespräch", "Prozess- und Dokumentationsabläufe", "Smart Farming oder Landwirtschaft", "Systemintegration", "Sonstiges Anliegen"],
+        message: "Worum geht es kurz?",
+        privacy: "Ich habe die Datenschutzhinweise zur Kontaktaufnahme gelesen. Meine Angaben werden zur Bearbeitung der Anfrage verarbeitet.",
+        submit: "Nachricht senden",
+        success: "Danke, die Nachricht wurde übermittelt. Wir melden uns zeitnah.",
+        error: "Die Nachricht konnte nicht gesendet werden. Bitte prüfen Sie die Pflichtfelder oder nutzen Sie E-Mail oder Telefon."
+      }
     },
     imprint: {
       title: "Impressum | IBS-Saxony",
@@ -614,7 +631,24 @@ const pages = {
         ["Phone", site.company.phone, site.company.phoneHref],
         ["WhatsApp", "Start direct message", site.company.whatsappHref]
       ],
-      note: "When clicking WhatsApp, you leave this website and open an external service. IBS-Saxony does not provide legal, insolvency, tax, financial or other binding professional advice."
+      note: "When clicking WhatsApp, you leave this website and open an external service. IBS-Saxony does not provide legal, insolvency, tax, financial or other binding professional advice.",
+      form: {
+        kicker: "Direct request",
+        title: "Send a message in 2 minutes",
+        intro: "Briefly describe which workflow creates friction today. A rough description is enough for the first look.",
+        requiredHint: "Required fields are marked with *.",
+        name: "Name",
+        email: "Email",
+        company: "Company or business (optional)",
+        phone: "Phone (optional)",
+        topic: "Topic",
+        topics: ["Free initial call", "Process and documentation workflows", "Smart Farming or agriculture", "System integration", "Other request"],
+        message: "What is this about?",
+        privacy: "I have read the privacy information for contact requests. My details will be processed to handle this request.",
+        submit: "Send message",
+        success: "Thank you, the message has been submitted. We will get back to you soon.",
+        error: "The message could not be sent. Please check the required fields or use email or phone."
+      }
     },
     imprint: {
       title: "Imprint | IBS-Saxony",
@@ -685,8 +719,8 @@ export function legalContent(locale) {
       [
         isDe ? "4. Kontaktaufnahme" : "4. Contact",
         isDe
-          ? "Wenn Sie uns per E-Mail, Telefon oder WhatsApp kontaktieren, verarbeiten wir die von Ihnen übermittelten Angaben zur Bearbeitung Ihrer Anfrage und für mögliche Anschlussfragen. Rechtsgrundlage ist je nach Inhalt der Anfrage Art. 6 Abs. 1 lit. b DSGVO oder Art. 6 Abs. 1 lit. f DSGVO. WhatsApp ist ein externer Dienst; beim Klick auf den WhatsApp-Link verlassen Sie diese Website."
-          : "If you contact us by email, phone or WhatsApp, we process the information you provide to handle your request and possible follow-up questions. Depending on the content of the request, the legal basis is Art. 6(1)(b) GDPR or Art. 6(1)(f) GDPR. WhatsApp is an external service; clicking the WhatsApp link leaves this website."
+          ? "Wenn Sie uns per Kontaktformular, E-Mail, Telefon oder WhatsApp kontaktieren, verarbeiten wir die von Ihnen übermittelten Angaben zur Bearbeitung Ihrer Anfrage und für mögliche Anschlussfragen. Beim Kontaktformular werden insbesondere Name, E-Mail-Adresse, optionale Angaben zu Firma, Telefon und Anliegen sowie Ihre Nachricht per E-Mail an IBS-Saxony übermittelt; eine dauerhafte Speicherung in einer Website-Datenbank findet nicht statt. Rechtsgrundlage ist je nach Inhalt der Anfrage Art. 6 Abs. 1 lit. b DSGVO oder Art. 6 Abs. 1 lit. f DSGVO. WhatsApp ist ein externer Dienst; beim Klick auf den WhatsApp-Link verlassen Sie diese Website."
+          : "If you contact us via contact form, email, phone or WhatsApp, we process the information you provide to handle your request and possible follow-up questions. The contact form sends your name, email address, optional company, phone and topic details as well as your message by email to IBS-Saxony; the website does not store these requests in a permanent website database. Depending on the content of the request, the legal basis is Art. 6(1)(b) GDPR or Art. 6(1)(f) GDPR. WhatsApp is an external service; clicking the WhatsApp link leaves this website."
       ],
       [
         isDe ? "5. Einwilligung und lokale Speicherung" : "5. Consent and local storage",

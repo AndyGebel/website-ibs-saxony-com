@@ -29,6 +29,19 @@ Hostinger legt bei dieser statischen PHP/HTML-Fassung den Repository-Root in `pu
 
 `dist-php` bleibt als reproduzierbares Build-Artefakt erhalten. Die produktive Auslieferung funktioniert jedoch auch dann, wenn Hostinger nur den Repository-Root nach `public_html` kopiert.
 
+
+## Kontaktformular
+
+Das klassische Kontaktformular liegt als statischer PHP-Endpunkt unter `contact-submit.php` im Webroot. Es sendet Textmails über PHP `mail()` und speichert keine Formularinhalte in einer Website-Datenbank.
+
+Konfiguration:
+
+- Standardempfänger: `info@ibs-saxony.com`
+- Optionaler Empfänger per Environment: `IBS_CONTACT_FORM_RECIPIENT`
+- Optionaler technischer Absender per Environment: `IBS_CONTACT_FORM_SENDER`
+
+Die Domain `ibs-sachsen.de.com` zeigte beim DNS-Check am 2026-07-30 einen Null-MX-Eintrag (`.`). Diese Adresse sollte erst als Formularziel verwendet werden, wenn dort ein empfangsfähiges Postfach beziehungsweise gültige MX-Einträge eingerichtet sind.
+
 ## Microsoft Clarity
 
 Die Clarity-Projekt-ID wird über Umgebungsvariablen gelesen:

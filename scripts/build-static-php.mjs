@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const sourceDir = path.join(root, "dist");
 const outputDir = path.join(root, "dist-php");
-const rootDeployEntries = ["_astro", "assets", "de", "en", "404.php", "index.php", "robots.txt", "sitemap.xml"];
+const rootDeployEntries = ["_astro", "assets", "de", "en", "404.php", "contact-submit.php", "index.php", "robots.txt", "sitemap.xml"];
 const buildGaMeasurementId = process.env.VITE_GA_MEASUREMENT_ID || process.env.PUBLIC_GA_MEASUREMENT_ID || process.env.GA_MEASUREMENT_ID || "";
 const buildClarityProjectId = process.env.PUBLIC_CLARITY_PROJECT_ID || process.env.VITE_CLARITY_PROJECT_ID || process.env.CLARITY_PROJECT_ID || "";
 

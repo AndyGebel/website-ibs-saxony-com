@@ -398,6 +398,54 @@ const cardGridClass = (cards: any[] = []) => `card-grid ${cards.length === 4 ? "
     <>
       <section class="section hero-compact"><div class="container narrow"><h1>{p.heading}</h1><p>{p.intro}</p></div></section>
       <section class="section"><div class="container contact-grid">{p.options.map(([title, label, href]) => <a class="contact-card" href={href}><span>{title}</span><strong>{label}</strong></a>)}</div><p class="container small-note">{p.note}</p></section>
+      <section class="section section-soft contact-form-section" id="kontaktformular">
+        <div class="container contact-form-layout">
+          <div class="section-heading">
+            <span class="section-kicker">{p.form.kicker}</span>
+            <h2>{p.form.title}</h2>
+            <p>{p.form.intro}</p>
+            <p class="form-required-note">{p.form.requiredHint}</p>
+          </div>
+          <form class="contact-form" action="/contact-submit.php" method="post" accept-charset="UTF-8" data-contact-form>
+            <input type="hidden" name="language" value={locale} />
+            <input class="form-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div class="form-status" data-form-status data-success={p.form.success} data-error={p.form.error} hidden></div>
+            <label>
+              <span>{p.form.name} *</span>
+              <input type="text" name="name" autocomplete="name" required maxlength="120" />
+            </label>
+            <label>
+              <span>{p.form.email} *</span>
+              <input type="email" name="email" autocomplete="email" required maxlength="160" />
+            </label>
+            <label>
+              <span>{p.form.company}</span>
+              <input type="text" name="company" autocomplete="organization" maxlength="160" />
+            </label>
+            <label>
+              <span>{p.form.phone}</span>
+              <input type="tel" name="phone" autocomplete="tel" maxlength="80" />
+            </label>
+            <label class="form-full">
+              <span>{p.form.topic} *</span>
+              <select name="topic" required>
+                {p.form.topics.map((topic: string) => <option value={topic}>{topic}</option>)}
+              </select>
+            </label>
+            <label class="form-full">
+              <span>{p.form.message} *</span>
+              <textarea name="message" rows="5" required maxlength="1800"></textarea>
+            </label>
+            <label class="form-check form-full">
+              <input type="checkbox" name="privacy" value="1" required />
+              <span>{p.form.privacy}</span>
+            </label>
+            <div class="form-actions form-full">
+              <button class="button button-gold" type="submit">{p.form.submit}</button>
+            </div>
+          </form>
+        </div>
+      </section>
     </>
   )}
 
