@@ -264,6 +264,12 @@ Options -Indexes
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # Keep the public site on one HTTPS domain. This also applies once parked
+  # domains are assigned to this document root in the hosting control panel.
+  RewriteCond %{HTTP_HOST} ^(?:www\\.)?ibs-saxony\\.de(?::\\d+)?$ [NC,OR]
+  RewriteCond %{HTTP_HOST} ^www\\.ibs-saxony\\.com(?::\\d+)?$ [NC]
+  RewriteRule ^ https://ibs-saxony.com%{REQUEST_URI} [R=301,L,NE]
+
   RewriteRule ^(\\.astro|\\.git|dist|dist-php|docs|node_modules|output|public|scripts|src|test-results)(/|$) - [F,L]
 
   RewriteCond %{REQUEST_FILENAME} !-f
