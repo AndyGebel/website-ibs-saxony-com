@@ -43,7 +43,7 @@ const sectionLabels = {
 };
 const getSectionLabel = (type: string) => sectionLabels[locale]?.[type] || sectionLabels.de[type] || "";
 const normalizeCard = (card: any) => Array.isArray(card) ? { title: card[0], text: card[1] } : card;
-const cardGridClass = (cards: any[] = []) => `card-grid ${cards.length === 4 ? "four" : cards.length === 3 ? "three" : "two"}`;
+const cardGridClass = (cards: any[] = []) => `card-grid ${cards.length === 4 ? "four" : cards.length === 3 ? "three" : cards.length === 1 ? "one" : "two"}`;
 ---
 
 <BaseLayout locale={locale} routeKey={routeKey} page={p}>
@@ -359,7 +359,7 @@ const cardGridClass = (cards: any[] = []) => `card-grid ${cards.length === 4 ? "
       {p.quote && <section class="section"><div class="container narrow quote-card"><blockquote>“{p.quote}”</blockquote><p>{p.author}</p></div></section>}
       {p.notice && <section class="section"><div class="container narrow service-card"><h2>{p.noticeTitle}</h2><p>{p.notice}</p></div></section>}
       <section class="section section-soft">
-        <div class="container card-grid two">
+        <div class={`container ${cardGridClass(p.cases)}`}>
           {p.cases.map((rawCase: any) => {
             const item = normalizeCard(rawCase);
             return (

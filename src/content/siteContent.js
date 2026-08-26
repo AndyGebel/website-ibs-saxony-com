@@ -121,8 +121,8 @@ const pages = {
         },
         {
           type: "proof",
-          title: "Bestätigte Arbeitsbeispiele aus Landwirtschaft und Frischekistenvertrieb",
-          text: "Zwei freigegebene Referenzen zeigen, wie IBS-Saxony operative Abläufe in echte Entlastung übersetzt: von schlagbezogener Dokumentation bis Kommissionierung und Auslieferung.",
+          title: "Bestätigtes Arbeitsbeispiel aus der Landwirtschaft",
+          text: "Die freigegebene Referenz zeigt, wie IBS-Saxony schlagbezogene Dokumentation und digitale Abläufe im Ackerbau operativ strukturiert.",
           cards: [
             {
               title: "LWB Landehre Christian Peschel",
@@ -132,15 +132,6 @@ const pages = {
               result: "Schlagsoftware aktualisiert die Schlagkartei aus Arbeitsaufgaben je Schlag.",
               text: "IBS-Saxony unterstützt beim Aufbau einer Gewürzproduktion und bei digitalen Abläufen im Ackerbau. Arbeitsaufgaben werden schlagbezogen strukturiert, damit Dokumentation und Betriebsdaten näher an der tatsächlichen Arbeit bleiben.",
               proofPoints: ["Aufbau Gewürzproduktion", "Schlagbezogene Aufgabenlogik", "Aktualisierung der Schlagkartei"]
-            },
-            {
-              title: "Obsthof Ibisch, Birgit Herrmann",
-              subtitle: "Frischekistenvertrieb, Kommissionierung und Auslieferung",
-              logo: "/assets/reference-logo-obsthof-ibisch.png",
-              logoAlt: "Logo Obsthof Ibisch",
-              result: "2026-Umsetzung mit Ziel: ca. 30 % weniger Arbeitszeit im digitalisierten Ablauf.",
-              text: "Der Frischekistenvertrieb wird in 2026 vom Auftrag über Kommissionierung bis zur Auslieferung digitalisiert. Ziel ist, manuelle Abstimmung zu reduzieren und den Tagesablauf planbarer zu machen.",
-              proofPoints: ["Digitale Auftragsstruktur in 2026", "Kommissionierung bis Auslieferung", "Ziel: ca. 30 % Arbeitszeit einsparen"]
             }
           ]
         },
@@ -162,7 +153,7 @@ const pages = {
           cards: [
             ["Mittelstand", "Bessere Übersicht über Aufträge, Dokumente, Zuständigkeiten und wiederkehrende Verwaltungsaufgaben."],
             ["Landwirtschaft", "Strukturierte Daten, digitale Dokumentation, Schlagkartei-Logik und Smart-Farming-Prozesse mit Praxisbezug."],
-            ["Regionale Projekte", "Koordination von Partnern, Produktdaten, Energie-, Agrar- und Vermarktungsprozessen in nachvollziehbaren Abläufen."]
+            ["Regionale Projekte", "Bei passenden Vorhaben arbeiten wir mit regionalen Produzenten zusammen und ordnen Partner, Produktdaten sowie Agrar- und Vermarktungsprozesse in nachvollziehbaren Abläufen."]
           ]
         },
         {
@@ -277,7 +268,7 @@ const pages = {
       focusCards: [
         ["Kleine und mittlere Unternehmen", "Aufträge, Dokumente, E-Mails und Zuständigkeiten werden so geordnet, dass weniger Zeit in Verwaltung und Suche verschwindet."],
         ["Landwirtschaft", "Digitale Dokumentation, Schlagkartei-Logik, Betriebsdaten und Nachweise werden näher an den tatsächlichen Arbeitsaufgaben strukturiert."],
-        ["Regionale Projekte", "Partner, Produktdaten, Energie-, Agrar- und Vermarktungsprozesse werden in nachvollziehbare Abläufe gebracht."]
+        ["Regionale Projekte", "Wir arbeiten bei passenden Vorhaben mit regionalen Produzenten zusammen und bringen Partner, Produktdaten sowie Agrar- und Vermarktungsprozesse in nachvollziehbare Abläufe."]
       ],
       boundaryTitle: "Klare operative Grenzen",
       boundaryText: "IBS-Saxony unterstützt bei operativen Abläufen, Daten, Dokumenten, Organisation und Umsetzung. Wir erbringen keine Rechtsberatung, Insolvenzberatung, Steuerberatung, Finanzberatung oder sonstige verbindliche Fachberatung. Rechtliche, steuerliche, insolvenzrechtliche oder finanzielle Fragen sind durch zugelassene Fachleute zu prüfen.",
@@ -288,9 +279,9 @@ const pages = {
       title: "Arbeitsbeispiele | IBS-Saxony",
       description: "Bestätigte Arbeitsbeispiele für operative Prozessoptimierung, Digitalisierung und Datenstrukturierung durch IBS-Saxony.",
       heading: "Bestätigte Referenzen, die operative Wirkung zeigen",
-      intro: "Diese Arbeitsbeispiele sind zur Referenznutzung bestätigt. Sie zeigen, wie IBS-Saxony gewachsene Abläufe in Landwirtschaft, Vertrieb, Kommissionierung und Auslieferung operativ strukturiert.",
+      intro: "Dieses Arbeitsbeispiel ist zur Referenznutzung bestätigt. Es zeigt, wie IBS-Saxony gewachsene Abläufe in der Landwirtschaft operativ strukturiert.",
       noticeTitle: "Belastbar, aber datensparsam",
-      notice: "Die genannten Betriebe werden als Referenzen geführt. Weitere interne Details, personenbezogene Daten, Vertragsinhalte oder zusätzliche Zahlen veröffentlichen wir nur, wenn sie ausdrücklich freigegeben sind.",
+      notice: "Der genannte Betrieb wird als Referenz geführt. Weitere interne Details, personenbezogene Daten, Vertragsinhalte oder zusätzliche Zahlen veröffentlichen wir nur, wenn sie ausdrücklich freigegeben sind.",
       cases: [
         {
           title: "LWB Landehre Christian Peschel",
@@ -300,15 +291,6 @@ const pages = {
           result: "Schlagsoftware aktualisiert die Schlagkartei aus Arbeitsaufgaben je Schlag.",
           text: "IBS-Saxony unterstützt beim Aufbau einer Gewürzproduktion und bei Softwareabläufen für den Ackerbau. Aufgaben werden schlagbezogen strukturiert, damit Dokumentation und Betriebsdaten aus der realen Arbeit heraus gepflegt werden können.",
           proofPoints: ["Aufbau Gewürzproduktion", "Schlagbezogene Aufgabenlogik", "Aktualisierung der Schlagkartei"]
-        },
-        {
-          title: "Obsthof Ibisch, Birgit Herrmann",
-          subtitle: "Frischekistenvertrieb, Kommissionierung und Auslieferung",
-          logo: "/assets/reference-logo-obsthof-ibisch.png",
-          logoAlt: "Logo Obsthof Ibisch",
-          result: "2026-Umsetzung mit Ziel: ca. 30 % weniger Arbeitszeit im digitalisierten Ablauf.",
-          text: "Der Frischekistenvertrieb wird in 2026 vom Auftrag bis zur Kommissionierung und Auslieferung digitalisiert. Ziel ist, manuelle Abstimmung zu reduzieren, Übergaben klarer zu machen und im digitalen Ablauf rund 30 % Arbeitszeit einzusparen.",
-          proofPoints: ["Digitale Auftragsstruktur in 2026", "Kommissionierung bis Auslieferung", "Ziel: rund 30 % Arbeitszeit einsparen"]
         }
       ]
     },
@@ -320,7 +302,7 @@ const pages = {
       values: [
         ["Ehrlichkeit & Klarheit", "Wir sagen, was machbar ist, was warten sollte und welche Schritte zuerst Wirkung bringen."],
         ["Praxisorientierung", "Eine Lösung ist erst gut, wenn sie im Betrieb angenommen wird und den Alltag vereinfacht."],
-        ["Langfristige Partnerschaft", "Wir begleiten nicht nur Konzepte, sondern Einführung, Schulung und Weiterentwicklung."]
+        ["Langfristige Partnerschaft", "Wir begleiten Konzepte, Einführung, Schulung und Weiterentwicklung. Bei passenden Vorhaben arbeiten wir mit regionalen Produzenten zusammen."]
       ],
       ceoText: "Andreas Gebel verbindet Erfahrung in Prozessoptimierung, IT- und Prozesspraxis und Landwirtschaftstechnologie mit einem klaren Anspruch: komplexe Themen verständlich machen und gemeinsam tragfähige Lösungen bauen."
     },
@@ -425,8 +407,8 @@ const pages = {
         },
         {
           type: "proof",
-          title: "Verified work examples from agriculture and fresh-box distribution",
-          text: "Two approved references show how IBS-Saxony turns operational workflows into practical relief: from field-specific documentation to picking and delivery.",
+          title: "Verified work example from agriculture",
+          text: "This approved work example shows how IBS-Saxony structures field-specific documentation and digital workflows for arable farming.",
           cards: [
             {
               title: "LWB Landehre Christian Peschel",
@@ -436,15 +418,6 @@ const pages = {
               result: "Field software updates the field record from work tasks per field.",
               text: "IBS-Saxony supports the build-up of spice production and digital workflows for arable farming. Work tasks are structured by field so documentation and operational data stay closer to actual work.",
               proofPoints: ["Spice-production setup", "Field-specific task logic", "Field-record updates"]
-            },
-            {
-              title: "Obsthof Ibisch, Birgit Herrmann",
-              subtitle: "Fresh-box distribution, picking and delivery",
-              logo: "/assets/reference-logo-obsthof-ibisch.png",
-              logoAlt: "Obsthof Ibisch logo",
-              result: "2026 implementation target: approx. 30% less working time in the digital workflow.",
-              text: "The fresh-box distribution workflow is scheduled to be digitalized in 2026 from order handling through picking to delivery. The goal is to reduce manual coordination and make the daily workflow easier to plan.",
-              proofPoints: ["Digital order structure in 2026", "Picking through delivery", "target: approx. 30% working time saved"]
             }
           ]
         },
@@ -466,7 +439,7 @@ const pages = {
           cards: [
             ["Small and medium-sized companies", "Better overview of orders, documents, responsibilities and recurring administrative tasks."],
             ["Agriculture", "Structured data, digital documentation, field-record logic and practical smart-farming processes."],
-            ["Regional projects", "Coordination of partners, product data, energy, agriculture and sales processes in traceable workflows."]
+            ["Regional projects", "For suitable projects, we work with regional producers and organize partner coordination, product data, agricultural and sales processes into traceable workflows."]
           ]
         },
         {
@@ -574,7 +547,7 @@ const pages = {
       focusCards: [
         ["Small and medium-sized companies", "Orders, documents, emails and responsibilities are structured so less time disappears into administration and search."],
         ["Agriculture", "Digital documentation, field-record logic, operational data and records are structured closer to actual work tasks."],
-        ["Regional projects", "Partners, product data, energy, agriculture and sales processes are turned into traceable workflows."]
+        ["Regional projects", "For suitable projects, we work with regional producers and turn partner coordination, product data, agricultural and sales processes into traceable workflows."]
       ],
       boundaryTitle: "Clear operational boundaries",
       boundaryText: "IBS-Saxony supports operational workflows, data, documents, organization and implementation. We do not provide legal, insolvency, tax, financial or other binding professional advice. Legal, tax, insolvency or financial questions must be reviewed by qualified professionals.",
@@ -585,9 +558,9 @@ const pages = {
       title: "Work examples | IBS-Saxony",
       description: "Verified work examples for operational process optimization, digitalization and data structuring by IBS-Saxony.",
       heading: "Verified references with operational impact",
-      intro: "These work examples are approved for reference use. They show how IBS-Saxony structures grown workflows in agriculture, distribution, picking and delivery.",
+      intro: "This work example is approved for reference use. It shows how IBS-Saxony structures grown workflows in agriculture.",
       noticeTitle: "Credible, but data-minimal",
-      notice: "The named businesses are used as references. Further internal details, personal data, contractual content or additional metrics are published only when explicitly approved.",
+      notice: "The named business is used as a reference. Further internal details, personal data, contractual content or additional metrics are published only when explicitly approved.",
       cases: [
         {
           title: "LWB Landehre Christian Peschel",
@@ -597,15 +570,6 @@ const pages = {
           result: "Field software updates the field record from work tasks per field.",
           text: "IBS-Saxony supports the build-up of spice production and software workflows for arable farming. Tasks are structured by field so documentation and operational data can be maintained from the actual work process.",
           proofPoints: ["Spice-production setup", "Field-specific task logic", "Field-record updates"]
-        },
-        {
-          title: "Obsthof Ibisch, Birgit Herrmann",
-          subtitle: "Fresh-box distribution, picking and delivery",
-          logo: "/assets/reference-logo-obsthof-ibisch.png",
-          logoAlt: "Obsthof Ibisch logo",
-          result: "2026 implementation target: approx. 30% less working time in the digital workflow.",
-          text: "The fresh-box distribution workflow is scheduled to be digitalized in 2026 from order handling through picking and delivery. The goal is to reduce manual coordination, make handovers clearer and save around 30% working time in the digital workflow.",
-          proofPoints: ["Digital order structure in 2026", "Picking through delivery", "target: around 30% working time saved"]
         }
       ]
     },
@@ -617,7 +581,7 @@ const pages = {
       values: [
         ["Honesty & clarity", "We say what is feasible, what should wait and which steps create impact first."],
         ["Practical orientation", "A solution is only good when it is accepted in the business and makes everyday work easier."],
-        ["Long-term partnership", "We support concepts, rollout, training and continuous improvement."]
+        ["Long-term partnership", "We support concepts, rollout, training and continuous improvement. For suitable projects, we work with regional producers."]
       ],
       ceoText: "Andreas Gebel combines experience in process optimization, IT and process practice and agricultural technology with a clear standard: make complex topics understandable and build durable solutions together."
     },

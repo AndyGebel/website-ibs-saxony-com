@@ -625,6 +625,10 @@ select {
   gap: 18px;
 }
 
+.card-grid.one {
+  max-width: 680px;
+}
+
 .service-card,
 .quote-card,
 .contact-card,

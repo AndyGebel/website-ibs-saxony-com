@@ -23,7 +23,7 @@ Es gilt für:
 - Social-Media-Grafiken und Videoinhalte
 - Motion-Assets wie Intro, Outro, Bauchbinden, Titelkarten und Thumbnails
 
-Es gilt nicht automatisch für BIOSIVA, LWB Landehre, Obsthof Ibisch oder andere Marken. Diese können inhaltlich im IBS-Saxony-Kontext vorkommen, behalten aber eigene Marken- und Freigabelogiken.
+Es gilt nicht automatisch für BIOSIVA, LWB Landehre oder andere Marken. Diese können inhaltlich im IBS-Saxony-Kontext vorkommen, behalten aber eigene Marken- und Freigabelogiken.
 
 ## 2. Verbindliche Quellen
 
