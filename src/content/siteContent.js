@@ -158,12 +158,13 @@ const pages = {
         },
         {
           type: "services",
-          title: "Vier Hebel, die aus Reibung wieder Arbeitszeit machen",
+          title: "Fünf Hebel, die aus Reibung wieder Arbeitszeit machen",
           cards: [
             ["Abläufe sichtbar machen", "Nicht das Produkt steht am Anfang, sondern der Ablauf, in dem heute Zeit verloren geht."],
             ["Datenübergaben ordnen", "ERP, Warenwirtschaft, Buchhaltung, Dokumentation und Fachsoftware werden so gedacht, dass weniger manuell übertragen wird."],
             ["Teams entlasten", "Routinearbeit, Suchzeiten und Medienbrüche werden reduziert, damit Fachkräfte wieder näher an Kunden, Betrieb und Entscheidungen arbeiten."],
-            ["Smart Farming & Betriebsdaten", "Für Landwirtschaftsbetriebe werden digitale Dokumentation, Schlagkartei-Logik und Betriebsdaten so strukturiert, dass sie praktisch nutzbar bleiben."]
+            ["Smart Farming & Betriebsdaten", "Für Landwirtschaftsbetriebe werden digitale Dokumentation, Schlagkartei-Logik und Betriebsdaten so strukturiert, dass sie praktisch nutzbar bleiben."],
+            { title: "Einkaufsunterstützung in China und Vertriebsorganisation", text: "Muttersprachliche Abstimmung mit Anbietern in China und klare Abläufe vom Angebot bis zur Nachbetreuung in Deutschland.", route: "chinaSourcingSales", linkLabel: "Leistung im Detail ansehen" }
           ]
         },
         {
@@ -210,14 +211,15 @@ const pages = {
     },
     services: {
       title: "Leistungen | IBS-Saxony",
-      description: "Prozessoptimierung, Schnittstellen, Mitarbeiterentlastung und Smart Farming für Unternehmen in Sachsen.",
+      description: "Operative Unterstützung für Prozesse, Schnittstellen, Smart Farming, Einkauf in China und Vertriebsorganisation in Deutschland.",
       heading: "Leistungen für mehr wirksame Arbeitszeit",
       intro: "Wir verbinden Analyse, Strukturierung und Umsetzung. Jede Leistung beginnt dort, wo wachsende Abläufe Reibung erzeugen, und endet erst, wenn der neue Ablauf praktisch nutzbar ist.",
       serviceBlocks: [
         ["Abläufe verbessern", "Wir machen sichtbar, wo Arbeit hängen bleibt, welche Schritte doppelt laufen und welche Entscheidungen durch bessere Daten vorbereitet werden können."],
         ["Schnittstellen schaffen", "Wir verbinden isolierte Systeme und reduzieren manuelle Übertragung zwischen ERP, Warenwirtschaft, Buchhaltung, Dokumentation und Fachsoftware."],
         ["Mitarbeiter entlasten", "Automatisierung nimmt Routineaufgaben aus dem Tagesgeschäft, damit Fachkräfte sich auf Kunden, Produktion und Entwicklung konzentrieren können."],
-        ["Smart Farming entwickeln", "Von digitaler Schlagkartei bis datenbasierter Betriebsführung: Wir wählen Technologien so aus, dass sie zu Hof, Team, Nachweisen und praktischer Umsetzung passen."]
+        ["Smart Farming entwickeln", "Von digitaler Schlagkartei bis datenbasierter Betriebsführung: Wir wählen Technologien so aus, dass sie zu Hof, Team, Nachweisen und praktischer Umsetzung passen."],
+        { title: "Einkaufsunterstützung in China und Vertriebsorganisation", text: "Wir strukturieren Anforderungen, chinesischsprachige Abstimmung und Angebotsvergleiche sowie Zielkunden, Angebote und Vertriebsabläufe in Deutschland.", route: "chinaSourcingSales", linkLabel: "Leistung im Detail ansehen" }
       ],
       comparisonTitle: "Vorher und nachher",
       comparison: [
@@ -444,12 +446,13 @@ const pages = {
         },
         {
           type: "services",
-          title: "Four levers that turn friction back into working time",
+          title: "Five levers that turn friction back into working time",
           cards: [
             ["Make workflows visible", "The work starts with the workflow where time is currently lost, not with a product."],
             ["Organize data handovers", "ERP, inventory, accounting, documentation and specialist tools are planned so less is transferred manually."],
             ["Relieve teams", "Routine work, search time and media breaks are reduced so skilled people work closer to customers, operations and decisions."],
-            ["Smart Farming & operational data", "For agricultural businesses, digital documentation, field-record logic and operational data are structured so they remain practical to use."]
+            ["Smart Farming & operational data", "For agricultural businesses, digital documentation, field-record logic and operational data are structured so they remain practical to use."],
+            { title: "China sourcing support and sales operations", text: "Native Chinese-language coordination with suppliers and clear workflows from offer to follow-up in Germany.", route: "chinaSourcingSales", linkLabel: "Explore this service" }
           ]
         },
         {
@@ -496,14 +499,15 @@ const pages = {
     },
     services: {
       title: "Services | IBS-Saxony",
-      description: "Process optimization, interfaces, workload reduction and Smart Farming for companies in Saxony.",
+      description: "Operational support for workflows, interfaces, Smart Farming, sourcing in China and sales organization in Germany.",
       heading: "Services for more effective working time",
       intro: "We combine analysis, structuring and implementation. Every service starts where growing workflows create friction and ends only when the new workflow is practical.",
       serviceBlocks: [
         ["Improve workflows", "We reveal where work stalls, which steps are duplicated and which decisions can be better prepared with clearer data."],
         ["Create interfaces", "We connect isolated systems and reduce manual transfer between ERP, inventory, accounting, documentation and specialist software."],
         ["Relieve teams", "Automation removes routine tasks so skilled people can focus on customers, production and development."],
-        ["Develop Smart Farming", "From digital field records to data-driven farm management, we select technologies that fit the farm, team, documentation needs and practical rollout."]
+        ["Develop Smart Farming", "From digital field records to data-driven farm management, we select technologies that fit the farm, team, documentation needs and practical rollout."],
+        { title: "China sourcing support and sales operations", text: "We structure requirements, Chinese-language coordination and offer comparisons, along with target customers, offers and sales workflows in Germany.", route: "chinaSourcingSales", linkLabel: "Explore this service" }
       ],
       comparisonTitle: "Before and after",
       comparison: [

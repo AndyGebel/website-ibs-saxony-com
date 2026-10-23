@@ -119,6 +119,7 @@ const cardGridClass = (cards: any[] = []) => `card-grid ${cards.length === 4 ? "
                       <h3>{card.title}</h3>
                       {card.result && <strong class="proof-result">{card.result}</strong>}
                       <p>{card.text}</p>
+                      {card.route && <a class="text-link service-detail-link" href={getPath(locale, card.route)}>{card.linkLabel}</a>}
                       {Array.isArray(card.proofPoints) && (
                         <ul class="proof-points">
                           {card.proofPoints.map((point: string) => <li>{point}</li>)}
@@ -174,7 +175,10 @@ const cardGridClass = (cards: any[] = []) => `card-grid ${cards.length === 4 ? "
         <div class="container narrow"><h1>{p.heading}</h1><p>{p.intro}</p></div>
       </section>
       <section class="section">
-        <div class="container card-grid two">{p.serviceBlocks.map(([title, text]) => <article class="service-card"><h2>{title}</h2><p>{text}</p></article>)}</div>
+        <div class="container card-grid two">{p.serviceBlocks.map((rawBlock: any) => {
+          const block = normalizeCard(rawBlock);
+          return <article class="service-card"><h2>{block.title}</h2><p>{block.text}</p>{block.route && <a class="text-link service-detail-link" href={getPath(locale, block.route)}>{block.linkLabel}</a>}</article>;
+        })}</div>
       </section>
       {p.relatedTitle && (
         <section class="section section-soft">
@@ -194,6 +198,53 @@ const cardGridClass = (cards: any[] = []) => `card-grid ${cards.length === 4 ? "
           </div>
         </div>
       </section>
+    </>
+  )}
+
+  {routeKey === "chinaSourcingSales" && (
+    <>
+      <section class="section hero-compact process-docs-hero china-service-hero">
+        <div class="container split china-service-hero-layout">
+          <div class="china-service-hero-copy">
+            <span class="section-kicker">{p.eyebrow}</span>
+            <h1>{p.heading}</h1>
+            <div class="button-row">
+              <a class="button button-gold" href={getPath(locale, "contact")}>{copy.nav.cta}</a>
+              <a class="button button-ghost" href={getPath(locale, "services")}>{locale === "de" ? "Alle Leistungen" : "All services"}</a>
+            </div>
+            <p class="service-hero-intro">{p.intro}</p>
+          </div>
+          <figure class="china-service-hero-figure">
+            <picture class="hero-media china-service-hero-media">
+              <source srcset="/assets/hero-china-einkauf-vertriebsorganisation-v1.webp" type="image/webp" />
+              <img src="/assets/hero-china-einkauf-vertriebsorganisation-v1.png" width="1536" height="1024" alt={locale === "de" ? "Symbolbild: Produktmuster und Angebotsunterlagen an einem Beschaffungsarbeitsplatz mit Hafenlogistik im Hintergrund" : "Illustrative image: product samples and offer documents at a sourcing desk with port logistics in the background"} loading="eager" fetchpriority="high" />
+            </picture>
+            <figcaption>{locale === "de" ? "Symbolbild: Produktmuster, Angebotsabstimmung und Logistik." : "Illustrative image: product samples, offer coordination and logistics."}</figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="section section-soft">
+        <div class="container">
+          <div class="section-heading"><span class="section-kicker">{locale === "de" ? "Einkauf" : "Sourcing"}</span><h2>{p.sourcingTitle}</h2><p>{p.sourcingText}</p></div>
+          <div class="card-grid four">{p.sourcingCards.map(([title, text]: [string, string], index: number) => <article class="service-card"><span class="card-index">{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="container">
+          <div class="section-heading"><span class="section-kicker">{locale === "de" ? "Vertrieb" : "Sales"}</span><h2>{p.salesTitle}</h2><p>{p.salesText}</p></div>
+          <div class="card-grid three">{p.salesCards.map(([title, text]: [string, string], index: number) => <article class="service-card"><span class="card-index">{String(index + 1).padStart(2, "0")}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+        </div>
+      </section>
+      <section class="section section-soft"><div class="container narrow service-card related-card"><span class="section-kicker">{locale === "de" ? "Ergebnisse" : "Deliverables"}</span><h2>{p.resultsTitle}</h2><p>{p.resultsText}</p></div></section>
+      <section class="section">
+        <div class="container">
+          <div class="section-heading"><span class="section-kicker">{locale === "de" ? "Vorgehen" : "Approach"}</span><h2>{p.processTitle}</h2><p>{p.processText}</p></div>
+          <div class="step-grid">{p.steps.map(([number, title, text]: [string, string, string]) => <article class="step-card"><span>{number}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+        </div>
+      </section>
+      <section class="section section-dark"><div class="container narrow"><span class="section-kicker">{locale === "de" ? "Abgrenzung" : "Boundaries"}</span><h2>{p.boundaryTitle}</h2><p>{p.boundary}</p></div></section>
+      <section class="section section-soft"><div class="container"><div class="section-heading"><h2>{locale === "de" ? "Häufige Fragen" : "Frequently asked questions"}</h2></div><div class="faq-list">{p.faq.map(([q, a]: [string, string]) => <details class="faq-item"><summary><h3>{q}</h3></summary><p>{a}</p></details>)}</div></div></section>
+      <section class="section final-cta"><div class="container"><span class="section-kicker">{locale === "de" ? "Nächster Schritt" : "Next step"}</span><h2>{p.ctaTitle}</h2><p>{p.ctaText}</p><a class="button button-gold" href={getPath(locale, "contact")}>{copy.nav.cta}</a></div></section>
     </>
   )}
 

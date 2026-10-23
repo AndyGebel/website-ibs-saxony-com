@@ -1,6 +1,7 @@
 export const routeMap = {
   home: { de: "", en: "" },
   services: { de: "leistungen", en: "services" },
+  chinaSourcingSales: { de: "china-einkauf-vertriebsorganisation", en: "china-sourcing-sales-operations" },
   processDocs: { de: "prozess-und-dokumentationsablaeufe", en: "process-and-documentation-workflows" },
   digitalAgriculturalOffice: { de: "digitales-agrarbuero-sachsen", en: "digital-agricultural-office-saxony" },
   regionalProcessDocumentation: { de: "prozessdokumentation-regionale-betriebe", en: "process-documentation-regional-businesses" },

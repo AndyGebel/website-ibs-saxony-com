@@ -16,6 +16,8 @@ const gaId = import.meta.env.VITE_GA_MEASUREMENT_ID || "";
 const clarityProjectId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID || import.meta.env.VITE_CLARITY_PROJECT_ID || "";
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION || "";
 const isIndexable = page.indexable !== false && routeKey !== "styleguide";
+const pageHeroWebp = routeKey === "chinaSourcingSales" ? "/assets/hero-china-einkauf-vertriebsorganisation-v1.webp" : site.assets.hero;
+const pageHeroSocial = routeKey === "chinaSourcingSales" ? "/assets/hero-china-einkauf-vertriebsorganisation-v1.png" : site.assets.hero;
 const schema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -34,6 +36,16 @@ const schema = {
   areaServed: ["Sachsen", "Sachsen-Anhalt", "Thüringen"],
   sameAs: [site.company.youtube]
 };
+const serviceSchema = routeKey === "chinaSourcingSales" ? {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: page.heading,
+  description: page.description,
+  serviceType: locale === "de" ? "Einkaufsunterstützung in China und Vertriebsorganisation" : "China sourcing support and sales operations",
+  provider: { "@type": "Organization", name: site.company.legalName, url: site.url },
+  areaServed: { "@type": "Country", name: "Germany" },
+  url: canonical
+} : null;
 ---
 
 <!doctype html>
@@ -49,20 +61,21 @@ const schema = {
     <link rel="alternate" hreflang="de" href={`${site.url}${getPath("de", routeKey)}`} />
     <link rel="alternate" hreflang="en" href={`${site.url}${getPath("en", routeKey)}`} />
     <link rel="alternate" hreflang="x-default" href={`${site.url}${getPath("de", routeKey)}`} />
-    <link rel="preload" href={site.assets.hero} as="image" type="image/webp" />
+    <link rel="preload" href={pageHeroWebp} as="image" type="image/webp" />
     <title>{page.title}</title>
     <meta name="description" content={page.description} />
     <meta property="og:title" content={page.title} />
     <meta property="og:description" content={page.description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={`${site.url}${site.assets.hero}`} />
+    <meta property="og:image" content={`${site.url}${pageHeroSocial}`} />
     <meta property="og:locale" content={locale === "de" ? "de_DE" : "en_US"} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={page.title} />
     <meta name="twitter:description" content={page.description} />
-    <meta name="twitter:image" content={`${site.url}${site.assets.hero}`} />
+    <meta name="twitter:image" content={`${site.url}${pageHeroSocial}`} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    {serviceSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />}
   </head>
   <body>
     <Header client:load locale={locale} labels={copy.nav} navItems={navItems(locale)} currentPath={currentPath} alternateHref={alternateHref} />

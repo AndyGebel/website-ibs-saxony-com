@@ -922,6 +922,11 @@ select {
   color: var(--color-muted);
 }
 
+.section-services .service-card .text-link {
+  grid-column: 2;
+  justify-self: start;
+}
+
 .step-card span {
   display: inline-flex;
   width: 44px;
@@ -954,6 +959,50 @@ select {
 .text-link {
   color: var(--color-primary-dark);
   font-weight: 900;
+}
+
+.service-detail-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin-top: 12px;
+  color: var(--teal-700);
+}
+
+.process-docs-hero .service-hero-intro {
+  margin-top: 24px;
+}
+
+.hero-compact.china-service-hero {
+  background:
+    linear-gradient(112deg, rgba(26, 80, 80, 0.97), rgba(18, 63, 63, 0.98)),
+    url("/assets/network-nodes.webp") center / cover no-repeat;
+}
+
+.china-service-hero-layout {
+  gap: clamp(28px, 5vw, 64px);
+}
+
+.china-service-hero-copy,
+.china-service-hero-figure {
+  min-width: 0;
+}
+
+.china-service-hero-figure {
+  margin: 0;
+}
+
+.china-service-hero-media img {
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.china-service-hero-figure figcaption {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.84rem;
+  line-height: 1.45;
 }
 
 .faq-list {
@@ -1594,6 +1643,10 @@ select {
     grid-template-columns: 1.2fr 0.8fr;
   }
 
+  .china-service-hero-layout {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  }
+
   .contact-form-layout {
     grid-template-columns: minmax(0, 0.85fr) minmax(420px, 1.15fr);
   }
@@ -1670,6 +1723,10 @@ select {
 
   .hero-media {
     display: none;
+  }
+
+  .china-service-hero-media {
+    display: block;
   }
 
   .hero-panel {

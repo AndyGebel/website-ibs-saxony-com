@@ -435,6 +435,8 @@ Aktuelle Asset-Richtung:
 - Hero-Bilder mit Prozess-, Industrie-, Agrar- oder Datenbezug
 - Logo als SVG
 
+Für die Leistungsseite „Einkaufsunterstützung in China und Vertriebsorganisation“ wird ein eigenes, als Symbolbild gekennzeichnetes Hero-Motiv verwendet. Es zeigt Produktmuster, Angebotsabstimmung und Logistik als Arbeitssituation, ohne einen realen IBS-Standort oder ein reales Team in China zu behaupten. WebP dient als Seitenbild; die PNG-Fassung wird für Social Previews genutzt. Mobil steht das Bild nach Überschrift, Kontakt-CTA und Einleitung.
+
 Empfohlene Größen:
 
 | Nutzung | Format | Zielgröße |
@@ -583,7 +585,7 @@ Desktop:
 
 - zwei Spalten
 - nummerierte offene Listenelemente
-- Teal-Zahlen `01` bis `04`
+- Teal-Zahlen `01` bis `05`
 - feine Linien statt schwerer Cards
 
 Mobile:
@@ -1057,7 +1059,7 @@ Gute Tonalität:
 - "Prozesse vereinfachen. Potenziale nutzen."
 - "Wenn Abläufe wachsen, wächst oft auch die Reibung."
 - "Mehr wirksame Arbeitszeit."
-- "Vier Leistungsfelder, ein Ziel: mehr wirksame Arbeitszeit."
+- "Fünf Hebel, die aus Reibung wieder Arbeitszeit machen."
 - "Wir helfen Unternehmen in Sachsen, tägliche Abläufe klarer, schneller und sinnvoller zu gestalten."
 - "In strukturierten Prozessen, integrierten Systemen und digitalen Werkzeugen entsteht Raum für Arbeit, die wirklich zählt."
 
